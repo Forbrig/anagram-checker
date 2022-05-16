@@ -32,12 +32,15 @@ const getAnagrams = (
   count: number
 ) => {
   const currentGroup: Array<string> = [];
+  let inputCopy: Array<string | undefined> = input;
   currentGroup.push(reference);
 
   const referenceArray = reference.replace(/\s/g, "").split("");
 
   input.forEach((string, index) => {
-    const currentString = string.replace(/\s/g, "").split("");
+    const currentString: (string | undefined)[] = string
+      .replace(/\s/g, "")
+      .split("");
 
     if (referenceArray.length === currentString.length) {
       // make sure they have the same lenght first
@@ -54,12 +57,12 @@ const getAnagrams = (
     // if we removed every index of the current string this means it matches
     if (currentString.every((e) => e === undefined)) {
       currentGroup.push(string);
-      input[index] = undefined; // to remove the string from the original input
+      inputCopy[index] = undefined; // to remove the string from the original input
     }
   });
 
   // only after checking all the words we remove them from the array, mainly to not to mess with indexes inside loops
-  input = input.filter((e) => e !== undefined);
+  input = inputCopy.filter((e) => e !== undefined) as Array<string>;
   anagrams[count] = currentGroup;
 
   if (input.length > 1) {

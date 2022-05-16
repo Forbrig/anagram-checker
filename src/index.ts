@@ -30,4 +30,4 @@ const input2 = ["monk", "konm", "nkom", "bbc", "cbb", "dell", "ledl", "llde"];
 ]
 */
 
-console.log(anagramChecker(input2));
+console.log(anagramChecker(input));
